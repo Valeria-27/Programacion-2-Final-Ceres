@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EjemploFinalP2A;
+using ProyectoFinalP2A;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,22 @@ namespace EjemploFinalP2A
         {
             InitializeComponent();
             //PARA OBTENER LA DIRECCION DE INSTALACION txb.Text = Environment.CurrentDirectory;
+        }
+
+        private void BtnQS_Click(object sender, RoutedEventArgs e)
+        {
+            
+                QuienesSomos quienesSomos = new QuienesSomos();
+                this.Hide();
+                quienesSomos.ShowDialog();
+                this.Close();
+            
+        }
+
+        private void BtnAceptarCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Desea salir de la página", "Atención!!", MessageBoxButton.YesNo);
+        
         }
     }
 }

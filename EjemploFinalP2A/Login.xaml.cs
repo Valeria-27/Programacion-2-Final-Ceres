@@ -43,7 +43,7 @@ namespace EjemploFinalP2A
             }
             catch (Exception ex)
             {
-                                
+                MessageBox.Show("Ocurrio un error"+ex.Message);
             }
         }
 
@@ -83,7 +83,7 @@ namespace EjemploFinalP2A
             }
             catch (Exception ex)
             {
-                                
+                MessageBox.Show("Ocurrio un error" + ex.Message);
             }
         }
 
