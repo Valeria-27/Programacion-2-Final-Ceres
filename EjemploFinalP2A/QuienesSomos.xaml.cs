@@ -1,4 +1,4 @@
-﻿using EjemploFinalP2A;
+﻿
 using ProyectoFinalP2A;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +28,9 @@ namespace ProyectoFinalP2A
 
         private void btnVolverMenu_Click(object sender, RoutedEventArgs e)
         {
-            Principal principal = new Principal();
+            MenuPrincipal menuPrincipal = new  MenuPrincipal();
             this.Hide();
-            principal.ShowDialog();
+            menuPrincipal.ShowDialog();
             this.Close();
         }
     }

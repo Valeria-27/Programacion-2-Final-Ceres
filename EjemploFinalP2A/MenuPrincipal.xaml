@@ -1,11 +1,11 @@
-﻿<Window x:Class="EjemploFinalP2A.Principal"
+﻿<Window x:Class="ProyectoFinalP2A.MenuPrincipal"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EjemploFinalP2A"
+        xmlns:local="clr-namespace:ProyectoFinalP2A"
         mc:Ignorable="d"
-        Title="Principal" Height="720" Width="1280">
+        Title="MenuPrincipal" Height="720" Width="1280">
     <Grid Background="#F9E79F" Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Label Content="CERES" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="45" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Center" Height="89" Margin="548,40,518,5" RenderTransformOrigin="0.481,0.091" Width="186"/>
         <Label  Content="Lo mejor en alimentos veganos en un solo lugar"  Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Bottom" Width="846" Margin="216,0,190,88" Grid.Row="1"/>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="216,0,216,40" Background="#28B463" Content="Productos" FontSize="35" Foreground="#F9E79F" FontWeight="Bold"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="216,0,216,40" Background="#28B463" Content="Productos" FontSize="35" Foreground="#F9E79F" FontWeight="Bold" Click="BtnProductos_Click"/>
 
         <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="216,40,216,0" Background="#28B463" Content="Reportes" FontSize="35" Foreground="#F9E79F" FontWeight="Bold"/>
         <Button Grid.Row="4" Grid.Column="1" Margin="20" Background="#F9E79F"  BorderBrush="Transparent" Content="Salir" FontSize="35" Foreground="#28B463" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="BtnAceptarCancelar_Click"/>

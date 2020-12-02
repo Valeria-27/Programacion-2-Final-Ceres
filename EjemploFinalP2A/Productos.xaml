@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinalP2A"
         mc:Ignorable="d"
-        Title="Productos" Height="450" Width="800">
+        Title="Productos"  Height="860" Width="1280">
+
     <Grid Background="#F9E79F" Margin="10">
-        
+
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="PRODUCTOS" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="40" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Center" Height="89" Margin="460,45,452,0" RenderTransformOrigin="0.481,0.091" Width="340"/>
+        <Button Content="Volver" Background="#28B463" Foreground="#F9E79F" FontSize="25" Width="120" Height="60" HorizontalAlignment="Left" FontFamily="Verdana" Click="btnVolverMenu2_Click"/>
+        <Label  Content="Nuevo Producto" HorizontalAlignment="Left" FontSize="30" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Bottom" Width="290" Margin="30" Grid.Row="1"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="80,0,598,45" Width="574" Grid.ColumnSpan="2">
+            <TextBox Width="90" Name="txbIdProducto" VerticalContentAlignment="Center" Margin="5,5,5,0" FontSize="30" ToolTip="id"/>
+            <TextBox Width="464" Name="txbNuevoProducto" VerticalContentAlignment="Center" Margin="5,5,5,0" FontSize="30" ToolTip="nombre,precioCompra,precioVenta,cantidadProducto"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="28,116,278,28" Grid.RowSpan="2" >
+            <Button Height="80"  Background="#28B463" Foreground="#F9E79F" Click="BtnGuardarProducto_Click"  Name="btnGuardarProducto" Width="130" Content="GUARDAR " FontSize="23" Margin="15"/>
+            <Button Height="80"  Background="#28B463" Foreground="#F9E79F"  Click="BtnModificarProducto_Click" Name="btnModificarProducto" Content="MODIFICAR" Width="130" FontSize="23" Margin="15"/>
+
+        </StackPanel>
+        <TextBox Grid.ColumnSpan="2" Grid.Row="3" Margin="80,0,62,64" Grid.RowSpan="3" Name="txtListaProductos" FontSize="30"/>
+
+
+
+
     </Grid>
 </Window>

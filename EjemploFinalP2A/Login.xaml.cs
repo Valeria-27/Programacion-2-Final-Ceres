@@ -1,4 +1,5 @@
 ﻿using System;
+using ProyectoFinalP2A;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -65,9 +66,9 @@ namespace EjemploFinalP2A
                     if (ValidarUsuario(usuario, password))
                     {
                         //Datos correctos
-                        Principal principal = new Principal();
+                        MenuPrincipal menuPrincipal= new MenuPrincipal();
                         this.Hide();
-                        principal.ShowDialog();
+                        menuPrincipal.ShowDialog();
                         this.Close();
                     }
                     else
