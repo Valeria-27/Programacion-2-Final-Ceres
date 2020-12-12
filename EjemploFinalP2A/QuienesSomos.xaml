@@ -32,7 +32,7 @@
          FontWeight="SemiBold" Foreground="#28B463" Margin="28,0,199,49" Width="399" Height="47" />
         <Label Grid.Row="4" Content="Estudiante de la carrera Ingeniería de Sistemas&#xA;Informáticos en la Universidad Privada del Valle.         &#xA;18 años de edad, estudió en La Salle en &#xA;la ciudad de Cochabamba.&#xA;Hobbies: El canto, Cine y El arte ." HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="22" FontFamily="Verdana" Foreground="#28B463" Margin="28,47,578,93.5" Width="646" Height="145" Grid.RowSpan="3" Grid.ColumnSpan="2" />
         <Button Content="Volver" Background="#28B463" Foreground="#F9E79F" FontSize="25" Width="120" Height="60" HorizontalAlignment="Left" FontFamily="Verdana" Click="btnVolverMenu_Click"/>
-        <Image Grid.Column="1" HorizontalAlignment="Left" Height="428" Margin="114,0,0,0" Grid.Row="2" Grid.RowSpan="5" VerticalAlignment="Top" Width="512" Source="logo-ceres.png"/>
+        <Image Grid.Column="1" HorizontalAlignment="Left" Height="384" Margin="120,0,0,0" Grid.Row="2" Grid.RowSpan="5" VerticalAlignment="Top" Width="382" Source="logo-ceres.png"/>
         <Label Content="Visita nuestra web:" Grid.Row="6" Foreground="#28B463" FontSize="20" FontFamily="Verdana" FontWeight="Bold" Margin="28,38.5,354,9.5"/>
         <Label Content="http:/www.ceres.com" Grid.Row="6" Foreground="#3498DB" FontSize="20" FontFamily="Verdana" FontWeight="Bold" Margin="247,39,119,10"/>
 

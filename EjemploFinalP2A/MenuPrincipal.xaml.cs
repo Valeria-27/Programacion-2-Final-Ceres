@@ -40,10 +40,27 @@ namespace ProyectoFinalP2A
 
         private void BtnProductos_Click(object sender, RoutedEventArgs e)
         {
-            Productos productosM = new Productos();
+            Productos productos = new Productos();
             this.Hide();
-            productosM.ShowDialog();
+            productos.ShowDialog();
             this.Close();
+        }
+
+        private void BtnVentas_Click(object sender, RoutedEventArgs e)
+        {
+            GestionVentas gestionVentas = new GestionVentas();
+            this.Hide();
+            gestionVentas.ShowDialog();
+            this.Close();
+        }
+
+        private void BtnReportes_Click(object sender, RoutedEventArgs e)
+        {
+            Reportes reportes = new Reportes();
+            this.Hide();
+            reportes.ShowDialog();
+            this.Close();
+
         }
     }
 }

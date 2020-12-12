@@ -21,38 +21,14 @@ namespace ProyectoFinalP2A
     /// </summary>
     public partial class Productos : Window
     {
-        string pathName = @"./Producto.txt";
-        string pathNameAuxiliar = @"./ProductoAuxiliar.txt";
+        string pathName = @".\productos.txt";
+        string pathNameAuxiliar = @".\auxiliar.txt";
         public Productos()
         {
             InitializeComponent();
-            MostrarProducto();
+            MostrarProductosDG();
+            VerificarArchivo();
         }
-
-        private void MostrarProducto()
-        {
-            try
-            {
-                txtListaProductos.Text = "";
-                if (File.Exists(pathName))
-                {
-                    string fila;
-                    StreamReader tuberiaLectura = File.OpenText(pathName);
-                    fila = tuberiaLectura.ReadLine();
-                    while (fila != null)
-                    {
-                        txtListaProductos.AppendText(fila + "\r\n");
-                        fila = tuberiaLectura.ReadLine();
-                    }
-                    tuberiaLectura.Close();
-                }
-            }
-            catch (Exception ex){
-
-                MessageBox.Show("Ocurrio un error" + ex.Message);
-            }
-
-         }
         private void VerificarArchivo()
         {
             try
@@ -61,53 +37,73 @@ namespace ProyectoFinalP2A
                 {
                     CrearArchivo();
                 }
+
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show("Error al verificar si existe el archivo");
-                Console.WriteLine("error: " + ex.Message);
-
+                MessageBox.Show("Ocurrio un error" + ex.Message);
             }
         }
-
         private void CrearArchivo()
         {
-            File.CreateText(pathName);
+            File.CreateText(pathName).Dispose();
         }
 
-        private void btnVolverMenu2_Click(object sender, RoutedEventArgs e)
+        private void MostrarProductosDG()
         {
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
-            this.Hide();
-            menuPrincipal.ShowDialog();
-            this.Close();
+            try
+            {
+                Producto producto;
+                List<Producto> clientes = new List<Producto>();
+                string id, nombre, precioVenta, precioCompra, cantidad;
+                string[] datosProducto;
+                if (File.Exists(pathName))
+                {
+                    StreamReader tuberiaLectura = File.OpenText(pathName);
+                    string linea = tuberiaLectura.ReadLine();
+                    while (linea != null)
+                    {                
+                        datosProducto = linea.Split(',');
+                        id = datosProducto[0];
+                        nombre = datosProducto[1];
+                        producto = new Producto(id, nombre);
+                        clientes.Add(producto);
+                        linea = tuberiaLectura.ReadLine();
+                    }
+                    tuberiaLectura.Close();
+                    dgListaP.ItemsSource = clientes;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al mostrar los clientes " + ex.Message);
+                Console.WriteLine(ex);
+            }
         }
-
         private void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)
         {
-          
             try
             {
                 if (File.Exists(pathName))
                 {
                     string idProducto = txbIdProducto.Text.Trim();
-                    string datosProducto = txbNuevoProducto.Text.Trim();
-                    if (datosProducto != "" && idProducto!="")
+                    string producto = txbDatosProducto.Text.Trim();
+                    if (producto != "" && idProducto != "")
                     {
                         if (ValidarId(idProducto))
                         {
-                            //si es verdad no existen productos con ese idMascota
+                            //el id es unico
                             StreamWriter tuberiaEscritura = File.AppendText(pathName);
-                            tuberiaEscritura.WriteLine(idProducto + "," + datosProducto);
+                            tuberiaEscritura.WriteLine(idProducto + "," + producto);
                             tuberiaEscritura.Close();
-                            MessageBox.Show("Producto creada con exito");
-                            txbNuevoProducto.Text = "";
-                            MostrarProducto();
+                            MessageBox.Show("El cliente se grabo con exito");
+                            txbDatosProducto.Text = "";
+                            txbIdProducto.Text = "";
+                            MostrarProductosDG();
                         }
                         else
                         {
-                            MessageBox.Show("Ya existe un producto con ese id, pruebe con otro");
+                            MessageBox.Show("El id debe de ser unico");
                         }
                     }
                     else
@@ -117,26 +113,27 @@ namespace ProyectoFinalP2A
                 }
                 else
                 {
-                    CrearArchivo();
+                    //crear el archivo
+                    File.CreateText(pathName).Dispose();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("" + ex);
+                MessageBox.Show("error " + ex.Message);
             }
         }
-        private bool ValidarId(string idProducto)
+
+        private bool ValidarId(string idCliente)
         {
             bool respuesta = true;
+            string[] datosSeparados;
             StreamReader tuberiaLectura = File.OpenText(pathName);
-            string[] datos;
             string linea = tuberiaLectura.ReadLine();
             while (linea != null)
             {
-                datos = linea.Split(',');
-                if (datos[0] == idProducto)
+                datosSeparados = linea.Split(',');
+                if (idCliente == datosSeparados[0])
                 {
-                    //ya hay un id con ese valor
                     respuesta = false;
                     break;
                 }
@@ -146,61 +143,143 @@ namespace ProyectoFinalP2A
             return respuesta;
         }
 
+        private void BtnEliminarProducto_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string ciEliminar = txbIdProducto.Text;
+                if (ciEliminar != "")
+                {
+                    string linea;
+                    string[] datosProducto;
+                    char separador = ',';
+                    bool eliminado = false;
+                    StreamReader tuberiaLectura = File.OpenText(pathName);
+                    StreamWriter tuberiaEscritura = File.AppendText(pathNameAuxiliar);
+                    linea = tuberiaLectura.ReadLine();
+                    while (linea != null)
+                    {
+                        datosProducto = linea.Split(separador);
+                        if (ciEliminar != datosProducto[0])
+                        {
+                            tuberiaEscritura.WriteLine(linea);
+                        }
+                        else
+                        {
+                            eliminado = true;
+                        }
+                        linea = tuberiaLectura.ReadLine();
+                    }
+                    tuberiaEscritura.Close();
+                    tuberiaLectura.Close();
+
+                    //vamos a copiar todo el contenido del auxiliar en el original
+                    File.Delete(pathName);
+                    File.Move(pathNameAuxiliar, pathName);
+                    File.Delete(pathNameAuxiliar);
+                    if (eliminado)
+                    {
+                        MessageBox.Show("El cliente se elimino con exito");
+                      
+                        MostrarProductosDG();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El cliente no existe");
+                    }
+                    txbIdProducto.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("No se pemite vacio");
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
         private void BtnModificarProducto_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string idProductoModificar = txbIdProducto.Text;
-                string datosModificados = txbNuevoProducto.Text;
-                string linea;
-                string[] datosProducto;
-                char separador = ',';
-                bool modificado = false;
-                StreamReader tuberiaLectura = File.OpenText(pathName);
-                StreamWriter tuberiaEscritura = File.AppendText(pathNameAuxiliar);
-                linea = tuberiaLectura.ReadLine();
-                while (linea != null)
+                string idModificar = txbIdProducto.Text;
+                if (idModificar != "")
                 {
-                    datosProducto = linea.Split(separador);
-                    if (idProductoModificar == datosProducto[0])
+                    string linea;
+                    string[] datosProducto;
+                    char separador = ',';
+                    bool modificar = false;
+                    StreamReader tuberiaLectura = File.OpenText(pathName);
+                    StreamWriter tuberiaEscritura = File.AppendText(pathNameAuxiliar);
+                    linea = tuberiaLectura.ReadLine();
+                    while (linea != null)
                     {
-                        //esta es la linea que contiene la mascota que se quiere eliminar
-                        modificado = true;
-                        //entonces debemos de enviar los nuevos datos y el id en el formato correcto
-                        tuberiaEscritura.WriteLine(idProductoModificar + "," + datosModificados);
+                        datosProducto = linea.Split(separador);
+                        if (idModificar != datosProducto[0])
+                        {
+                            tuberiaEscritura.WriteLine(linea);
+                        }
+                        else
+                        {
+                            modificar = true;
+                            string productoModificado = txbDatosProducto.Text;
+                            tuberiaEscritura.WriteLine(idModificar + "," + productoModificado);
+                        }
+                        linea = tuberiaLectura.ReadLine();
+                    }
+                    tuberiaEscritura.Close();
+                    tuberiaLectura.Close();
+
+                    //vamos a copiar todo el contenido del auxiliar en el original
+                    File.Delete(pathName);
+                    File.Move(pathNameAuxiliar, pathName);
+                    File.Delete(pathNameAuxiliar);
+                    if (modificar)
+                    {
+                        MessageBox.Show("El cliente se modifico con exito");
+                        MostrarProductosDG();
+                        txbIdProducto.Text = "";
+                        txbDatosProducto.Text = "";
                     }
                     else
                     {
-                        //esta mascota no es la que se quiere eliminar asi que la vamos a copiar al txt aux
-                        tuberiaEscritura.WriteLine(linea);
+                        MessageBox.Show("El cliente no existe");
                     }
-                    linea = tuberiaLectura.ReadLine();
-                }
-                if (modificado)
-                {
-                    MessageBox.Show("El Producto se modificó con éxito");
                 }
                 else
                 {
-                    MessageBox.Show("Producto no encontrado");
+                    MessageBox.Show("No se pemite vacio");
                 }
-                tuberiaEscritura.Close();
-                tuberiaLectura.Close();
-                //Ahora debemos copiar todo el contenido del txt auxiliar al txt original
-                // File.Delete(pathName)  borra
-                // File.Move(pathName)  reemplaza el contenido
-                File.Delete(pathName);
-                File.Move(pathNameAuxiliar, pathName);
-                File.Delete(pathNameAuxiliar);
-                MostrarProducto();
-                txbIdProducto.Text = "";
-                txbNuevoProducto.Text = "";
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("error al modificar el Producto" + ex.Message);
+
             }
+        }
+
+        private void DgProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgListaP.SelectedItem != null)
+            {
+                Producto producto = new Producto();
+                producto = (Producto)dgListaP.SelectedItem;
+                txbIdProducto.Text = producto.Id;
+            }
+
+        }
+
+        private void btnVolverMenu2_Click(object sender, RoutedEventArgs e)
+        {
+
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
+                this.Hide();
+                menuPrincipal.ShowDialog();
+                this.Close();
+            
         }
     }
 }

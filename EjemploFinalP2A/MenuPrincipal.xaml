@@ -20,11 +20,14 @@
         </Grid.RowDefinitions>
         <Label Content="CERES" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="45" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Center" Height="89" Margin="548,40,518,5" RenderTransformOrigin="0.481,0.091" Width="186"/>
         <Label  Content="Lo mejor en alimentos veganos en un solo lugar"  Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Bottom" Width="846" Margin="216,0,190,88" Grid.Row="1"/>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="216,0,216,40" Background="#28B463" Content="Productos" FontSize="35" Foreground="#F9E79F" FontWeight="Bold" Click="BtnProductos_Click"/>
-
-        <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="216,40,216,0" Background="#28B463" Content="Reportes" FontSize="35" Foreground="#F9E79F" FontWeight="Bold"/>
+        <Button Name="BtnProductos" BorderBrush="Transparent" Grid.Row="1" Grid.ColumnSpan="2" Margin="242,86,190,102" 
+                Background="#28B463" Content="Productos" FontSize="35" Foreground="#F9E79F" FontWeight="Bold" Click="BtnProductos_Click" Grid.RowSpan="2"/>
+        <Button Name="BtnVentas" Click="BtnVentas_Click" BorderBrush="Transparent" Grid.Row="2" Grid.ColumnSpan="2" Margin="242,60,190,0" 
+                Background="#28B463" Content="Ventas" FontSize="35" Foreground="#F9E79F" FontWeight="Bold"/>
+        <Button Name="BtnReportes" Click="BtnReportes_Click" BorderBrush="Transparent" Grid.Row="3" Grid.ColumnSpan="2" Margin="242,28,190,30" 
+                Background="#28B463" Content="Reportes" FontSize="35" Foreground="#F9E79F" FontWeight="Bold"/>
         <Button Grid.Row="4" Grid.Column="1" Margin="20" Background="#F9E79F"  BorderBrush="Transparent" Content="Salir" FontSize="35" Foreground="#28B463" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="BtnAceptarCancelar_Click"/>
         <Button Grid.Row="4" Grid.Column="0" BorderBrush="Transparent" Margin="20" Background="#F9E79F" Content="¿Quienes Somos?" FontSize="35" Foreground="#28B463" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="BtnQS_Click"/>
-        <Image HorizontalAlignment="Left" Height="119" Margin="20,10,0,0" VerticalAlignment="Top" Width="142" Source="logo-ceres.png"/>
+        <Image HorizontalAlignment="Left" Height="142" Margin="20,10,0,0" VerticalAlignment="Top" Width="125" Source="logo-ceres.png" Grid.RowSpan="2"/>
     </Grid>
 </Window>
