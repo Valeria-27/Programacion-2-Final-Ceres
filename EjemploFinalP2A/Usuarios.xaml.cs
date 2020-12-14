@@ -1,5 +1,4 @@
 ﻿using System;
-using ProyectoFinalP2A;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,17 +16,19 @@ using System.Windows.Shapes;
 namespace ProyectoFinalP2A
 {
     /// <summary>
-    /// Lógica de interacción para Productos.xaml
+    /// Lógica de interacción para Usuario.xaml
     /// </summary>
-    public partial class Productos : Window
+    public partial class Usuario : Window
     {
-        string pathName = @".\productos.txt";
-        string pathNameAuxiliar = @".\auxiliar.txt";
-        public Productos()
+        string pathName = @"./usuarios.txt";
+        string pathNameAuxiliar = @"./auxiliarusuarios.txt";
+        public Usuario()
         {
             InitializeComponent();
-            CrearArchivo();
+            VerificarArchivo();
         }
+
+
         private void VerificarArchivo()
         {
             try
@@ -46,34 +47,33 @@ namespace ProyectoFinalP2A
         private void CrearArchivo()
         {
             File.CreateText(pathName).Dispose();
-        }
 
-        private void MostrarProductosDG()
+        }
+        private void MostrarUsuariosDG()
         {
             try
             {
-                Producto producto;
-                List<Producto> productos = new List<Producto>();
-                string id, nombre, precioVenta, precioCompra, cantidad;
-                string[] datosProducto;
+                Usuarioop usuarioP;
+                List<Usuarioop> clientes = new List<Usuarioop>();
+                string nombre, tipo, usuario, password;
+                string[] datosUsuario;
                 if (File.Exists(pathName))
                 {
                     StreamReader tuberiaLectura = File.OpenText(pathName);
                     string linea = tuberiaLectura.ReadLine();
                     while (linea != null)
                     {
-                        datosProducto = linea.Split(',');
-                        id = datosProducto[0];
-                        nombre = datosProducto[1];
-                        precioVenta = datosProducto[2];
-                        precioCompra = datosProducto[3];
-                        cantidad = datosProducto[4];
-                        producto = new Producto(id, nombre, precioVenta, precioCompra, cantidad);
-                        productos.Add(producto);
+                        datosUsuario = linea.Split(',');
+                        nombre = datosUsuario[0];
+                        tipo = datosUsuario[1];
+                        usuario = datosUsuario[2];
+                        password = datosUsuario[3];
+                        usuarioP = new Usuarioop(nombre, tipo, usuario, password);
+                        clientes.Add(usuarioP);
                         linea = tuberiaLectura.ReadLine();
                     }
                     tuberiaLectura.Close();
-                    dgListaP.ItemsSource = productos;
+                    dgUsuarios.ItemsSource = clientes;
                 }
             }
             catch (Exception ex)
@@ -81,51 +81,54 @@ namespace ProyectoFinalP2A
                 MessageBox.Show("Error al mostrar los clientes " + ex.Message);
                 Console.WriteLine(ex);
             }
+
         }
 
-        private void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)
+        private void BtnGuardarUsuario_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 if (File.Exists(pathName))
                 {
-                    string id = txbId.Text.Trim();
                     string nombre = txbNombre.Text.Trim();
-                    string precioVenta = txbPrecioVenta.Text.Trim();
-                    string precioCompra = txbPrecioCompra.Text.Trim();
-                    string cantidad = txbCantidad.Text.Trim();
-                    if (id != "" && nombre != "" && precioVenta != "" && cantidad != "" && id != "")
+                    string tipo = txbTipo.Text.Trim();
+                    string usuario = txbUsuario.Text.Trim();
+                    string contraseña = txbPassword.Text.Trim();
+                    if (nombre != "" && tipo != "" && usuario != "" && contraseña != "")
                     {
-                        if (ValidarId(id))
+                        if (ValidarNombre(nombre))
                         {
                             //el id es unico
                             StreamWriter tuberiaEscritura = File.AppendText(pathName);
-                            tuberiaEscritura.WriteLine(id + "," + nombre + "," + precioVenta + "," + precioCompra + "," + cantidad);
+                            tuberiaEscritura.WriteLine(nombre + "," + tipo + "," + usuario + "," + contraseña);
                             tuberiaEscritura.Close();
-                            MessageBox.Show("El producto se grabo con exito");
+                            MessageBox.Show("El cliente se grabo con exito");
                             txbNombre.Text = "";
-                            txbId.Text = "";
-                            txbPrecioVenta.Text = "";
-                            txbPrecioCompra.Text = "";
-                            txbCantidad.Text = "";
-                            MostrarProductosDG();
+                            txbTipo.Text = "";
+                            txbUsuario.Text = "";
+                            txbPassword.Text = "";
+                            MostrarUsuariosDG();
                         }
                         else
                         {
                             MessageBox.Show("El id debe de ser unico");
+
                         }
+
                     }
                     else
                     {
                         MessageBox.Show("No se permite vacio");
+
                     }
+
                 }
                 else
                 {
-                    //crear el archivo
                     File.CreateText(pathName).Dispose();
+
                 }
+
             }
             catch (Exception ex)
             {
@@ -133,8 +136,7 @@ namespace ProyectoFinalP2A
             }
         }
 
-
-        private bool ValidarId(string id)
+        private bool ValidarNombre(string nombre)
         {
             bool respuesta = true;
             string[] datosSeparados;
@@ -143,7 +145,7 @@ namespace ProyectoFinalP2A
             while (linea != null)
             {
                 datosSeparados = linea.Split(',');
-                if (id == datosSeparados[0])
+                if (nombre == datosSeparados[0])
                 {
                     respuesta = false;
                     break;
@@ -153,12 +155,11 @@ namespace ProyectoFinalP2A
             tuberiaLectura.Close();
             return respuesta;
         }
-
-        private void BtnModificarProducto_Click(object sender, RoutedEventArgs e)
+        private void BtnModificarUsuario_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string idModificar = txbId.Text;
+                string idModificar = txbNombre.Text;
                 if (idModificar != "")
                 {
                     string linea;
@@ -178,7 +179,7 @@ namespace ProyectoFinalP2A
                         else
                         {
                             modificar = true;
-                            string productoModificado = (txbId.Text + "," + txbNombre + "," + txbPrecioVenta + "," + txbPrecioCompra + "," + txbCantidad);
+                            string productoModificado = (txbNombre.Text + "," + txbTipo + "," + txbUsuario + "," + txbPassword);
                             tuberiaEscritura.WriteLine(idModificar + "," + productoModificado);
                         }
                         linea = tuberiaLectura.ReadLine();
@@ -186,41 +187,45 @@ namespace ProyectoFinalP2A
                     tuberiaEscritura.Close();
                     tuberiaLectura.Close();
 
+
+
                     //vamos a copiar todo el contenido del auxiliar en el original
                     File.Delete(pathName);
                     File.Move(pathNameAuxiliar, pathName);
                     File.Delete(pathNameAuxiliar);
                     if (modificar)
                     {
-                        MessageBox.Show("El producto se modifico con exito");
-                        MostrarProductosDG();
+                        MessageBox.Show("El cliente se modifico con exito");
+                        MostrarUsuariosDG();
                         txbNombre.Text = "";
-                        txbId.Text = "";
-                        txbPrecioCompra.Text = "";
-                        txbPrecioVenta.Text = "";
-                        txbCantidad.Text = "";
+                        txbTipo.Text = "";
+                        txbUsuario.Text = "";
+                        txbPassword.Text = "";
                     }
                     else
                     {
-                        MessageBox.Show("El producto no existe");
+                        MessageBox.Show("El cliente no existe");
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se pemite vacio");
-                }
 
+                }
             }
             catch (Exception)
             {
 
             }
         }
-        private void BtnEliminarProducto_Click(object sender, RoutedEventArgs e)
+
+
+
+        private void BtnEliminarUsuario_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string ciEliminar = txbId.Text;
+                string ciEliminar = txbNombre.Text;
                 if (ciEliminar != "")
                 {
                     string linea;
@@ -246,6 +251,8 @@ namespace ProyectoFinalP2A
                     tuberiaEscritura.Close();
                     tuberiaLectura.Close();
 
+
+
                     //vamos a copiar todo el contenido del auxiliar en el original
                     File.Delete(pathName);
                     File.Move(pathNameAuxiliar, pathName);
@@ -253,18 +260,20 @@ namespace ProyectoFinalP2A
                     if (eliminado)
                     {
                         MessageBox.Show("El cliente se elimino con exito");
-
-                        MostrarProductosDG();
+                        MostrarUsuariosDG();
                     }
                     else
                     {
                         MessageBox.Show("El cliente no existe");
+
                     }
+
                     txbNombre.Text = "";
                 }
                 else
                 {
                     MessageBox.Show("No se pemite vacio");
+
                 }
 
             }
@@ -272,20 +281,25 @@ namespace ProyectoFinalP2A
             {
 
             }
-        }
 
+        }
+        private void DgUsuarios_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgUsuarios.SelectedItem != null)
+            {
+                Usuarioop usuario = new Usuarioop();
+                usuario = (Usuarioop)dgUsuarios.SelectedItem;
+                txbNombre.Text = usuario.Nombre;
+            }
+
+        }
         private void btnVolverMenu2_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             this.Hide();
             menuPrincipal.ShowDialog();
             this.Close();
+
         }
-
-        
     }
-
-
-
-    
 }

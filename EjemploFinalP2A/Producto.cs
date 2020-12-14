@@ -10,34 +10,34 @@ namespace ProyectoFinalP2A
     {
 
         private string id;
+        private string nombre;
         private string precioVenta;
         private string precioCompra;
         private string cantidad;
-        private string nombre;
 
         public Producto()
         {
 
         }
-        public Producto(string id, string nombre)
+        public Producto(string id, string nombre, string precioVenta, string precioCompra, string cantidad)
         {
             this.id = id;
             this.nombre = nombre;
-        }
-
-        public Producto(string i, string n, string pv, string pc, string c)
-        {
-            id = i;
-            nombre = n;
-            precioVenta = pv;
-            precioCompra = pc;
-            cantidad = c;
+            this.precioVenta = precioVenta;
+            this.precioCompra = precioCompra;
+            this.cantidad = cantidad;
         }
 
         public string Id
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
         }
 
         public string PrecioVenta
@@ -51,19 +51,10 @@ namespace ProyectoFinalP2A
             get { return precioCompra; }
             set { precioCompra = value; }
         }
-
         public string Cantidad
         {
             get { return cantidad; }
             set { cantidad = value; }
         }
-
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
-        }
-
-
     }
 }

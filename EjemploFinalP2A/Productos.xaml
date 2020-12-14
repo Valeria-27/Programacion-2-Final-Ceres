@@ -8,9 +8,6 @@
         Title="Productos"  Height="860" Width="1280">
 
     <Grid Background="#F9E79F" Margin="10">
-
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -26,9 +23,15 @@
         <Label Content="PRODUCTOS" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="40" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Center" Height="89" Margin="460,45,452,0" RenderTransformOrigin="0.481,0.091" Width="340"/>
         <Button Content="Volver" BorderBrush="Transparent" Background="#28B463" Foreground="#F9E79F" FontSize="25" Width="120" Height="60" HorizontalAlignment="Left" FontFamily="Verdana" Click="btnVolverMenu2_Click"/>
         <Label  Content="Nuevo Producto" HorizontalAlignment="Left" FontSize="30" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Bottom" Width="290" Margin="108,0,0,74" Grid.Row="1"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="332,10,379,43" Width="541" Grid.ColumnSpan="2">
-            <TextBox Width="88" BorderBrush="Transparent" Name="txbIdProducto" VerticalContentAlignment="Center" Margin="5,29,5,0" FontSize="30" ToolTip="id"/>
-            <TextBox Width="400" BorderBrush="Transparent" Name="txbDatosProducto" VerticalContentAlignment="Center" Margin="5,29,5,0" FontSize="30" ToolTip="nombre"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="263,32,290,0" Width="699" Grid.ColumnSpan="2">
+
+            <TextBox Width="100" BorderBrush="Transparent" Name="txbId" VerticalContentAlignment="Center" Margin="5,43,5,0" FontSize="30" ToolTip="id"/>
+            <TextBox Width="176" BorderBrush="Transparent" Name="txbNombre" VerticalContentAlignment="Center" Margin="5,43,5,0" FontSize="30" ToolTip="nombre"/>
+            <TextBox Width="124" BorderBrush="Transparent" Name="txbPrecioVenta" VerticalContentAlignment="Center" Margin="5,43,5,0" FontSize="30" ToolTip="PrecioVenta"/>
+            <TextBox Width="121" BorderBrush="Transparent" Name="txbPrecioCompra" VerticalContentAlignment="Center" Margin="5,43,5,0" FontSize="30" ToolTip="PrecioCompra"/>
+            <TextBox Width="130" BorderBrush="Transparent" Name="txbCantidad" VerticalContentAlignment="Center" Margin="5,43,5,0" FontSize="30" ToolTip="Cantidad"/>
+
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="123,10,121,53" Grid.Row="1" Width="382" >
             <Button  Background="#28B463" BorderBrush="Transparent" Foreground="#F9E79F" Click="BtnGuardarProducto_Click"  x:Name="btnGuardarProducto" Width="100" Content="Guardar " FontSize="20" Margin="15,10"/>
@@ -36,7 +39,12 @@
             <Button  Background="#28B463" BorderBrush="Transparent"  Foreground="#F9E79F"  Click="BtnEliminarProducto_Click" x:Name="btnEliminarProducto" Content="Eliminar" Width="100" FontSize="20" Margin="15,10"/>
 
         </StackPanel>
-        <DataGrid SelectionChanged="DgProductos_SelectionChanged" Name="dgListaP" BorderBrush="Transparent"  HorizontalAlignment="Left" Height="284" Margin="332,0,0,66" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Bottom" Width="541" Grid.ColumnSpan="2" HeadersVisibility="Column"/>
+        <DataGrid FontSize="30"  Name="dgListaP" BorderBrush="Transparent"  HorizontalAlignment="Left" Height="284" Margin="263,0,0,66" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Bottom" Width="699" Grid.ColumnSpan="2" HeadersVisibility="Column"/>
+        <Label FontSize="20" FontWeight="SemiBold" Foreground="#28B463" Background="#F9E79F" BorderBrush="Transparent"  HorizontalAlignment="Left" Height="32" Margin="263,0,0,0" Grid.Row="2"  Content="ID" VerticalAlignment="Top" Width="103"/>
+        <Label  FontSize="20" FontWeight="SemiBold" Foreground="#28B463" Background="#F9E79F" HorizontalAlignment="Left" Height="32" Margin="390,0,0,0" Grid.Row="2"  Content="Nombre" VerticalAlignment="Top" Width="103" />
+        <Label  FontSize="20" FontWeight="SemiBold" Foreground="#28B463" Background="#F9E79F" HorizontalAlignment="Left" Height="32" Margin="560,0,0,0" Grid.Row="2"  Content="Precio Venta" VerticalAlignment="Top" Width="127" Grid.ColumnSpan="2"/>
+        <Label  FontSize="20" FontWeight="SemiBold" Foreground="#28B463" Background="#F9E79F" HorizontalAlignment="Left" Height="42" Margin="66,0,0,0" Grid.Row="2"  Content="Precio Compra" VerticalAlignment="Top" Width="143" Grid.Column="1"/>
+        <Label  FontSize="20" FontWeight="SemiBold" Foreground="#28B463" Background="#F9E79F" HorizontalAlignment="Left" Height="32" Margin="214,0,0,0" Grid.Row="2"  Content="Cantidad" VerticalAlignment="Top" Width="103" Grid.Column="1"/>
 
 
 

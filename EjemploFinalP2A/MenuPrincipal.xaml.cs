@@ -62,5 +62,14 @@ namespace ProyectoFinalP2A
             this.Close();
 
         }
+
+        private void btnUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            this.Hide();
+            usuario.ShowDialog();
+            this.Close();
+
+        }
     }
 }

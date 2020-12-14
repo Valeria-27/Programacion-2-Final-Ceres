@@ -18,6 +18,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Button Content="Usuarios" BorderBrush="Transparent" Background="#28B463" Foreground="#F9E79F" FontSize="25" Width="120" Height="60" HorizontalAlignment="Right" FontFamily="Verdana" Click="btnUsuarios_Click" Grid.Column="1" Margin="0,10,20,64"/>
+
         <Label Content="CERES" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="45" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Center" Height="89" Margin="548,40,518,5" RenderTransformOrigin="0.481,0.091" Width="186"/>
         <Label  Content="Lo mejor en alimentos veganos en un solo lugar"  Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" FontFamily="Verdana" FontWeight="Bold" Foreground="#28B463" VerticalAlignment="Bottom" Width="846" Margin="216,0,190,88" Grid.Row="1"/>
         <Button Name="BtnProductos" BorderBrush="Transparent" Grid.Row="1" Grid.ColumnSpan="2" Margin="242,86,190,102" 

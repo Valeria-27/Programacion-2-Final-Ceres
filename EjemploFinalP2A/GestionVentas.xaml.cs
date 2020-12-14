@@ -23,5 +23,23 @@ namespace ProyectoFinalP2A
         {
             InitializeComponent();
         }
+
+        private void btnVolverMen_Click(object sender, RoutedEventArgs e)
+        {
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            this.Hide();
+            menuPrincipal.ShowDialog();
+            this.Close();
+        }
+
+        private void BtnGuardarVenta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnRealizarVenta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
