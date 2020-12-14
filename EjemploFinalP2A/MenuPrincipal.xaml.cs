@@ -54,14 +54,7 @@ namespace ProyectoFinalP2A
             this.Close();
         }
 
-        private void BtnReportes_Click(object sender, RoutedEventArgs e)
-        {
-            Reportes reportes = new Reportes();
-            this.Hide();
-            reportes.ShowDialog();
-            this.Close();
-
-        }
+      
 
         private void btnUsuarios_Click(object sender, RoutedEventArgs e)
         {
