@@ -21,7 +21,7 @@ namespace ProyectoFinalP2A
     /// </summary>
     public partial class Productos : Window
     {
-        string pathName = @".\productos.txt";
+        string pathName = @".\productoss.txt";
         string pathNameAuxiliar = @".\auxiliar.txt";
         public Productos()
         {
@@ -54,7 +54,7 @@ namespace ProyectoFinalP2A
             {
                 Producto producto;
                 List<Producto> productos = new List<Producto>();
-                string id, nombre, precioVenta, precioCompra, cantidad;
+                string id, nombre, precioVenta, precioCompra,cantidad;
                 string[] datosProducto;
                 if (File.Exists(pathName))
                 {
@@ -68,7 +68,7 @@ namespace ProyectoFinalP2A
                         precioVenta = datosProducto[2];
                         precioCompra = datosProducto[3];
                         cantidad = datosProducto[4];
-                        producto = new Producto(id, nombre, precioVenta, precioCompra, cantidad);
+                        producto = new Producto(id, nombre, precioVenta, precioCompra,cantidad);
                         productos.Add(producto);
                         linea = tuberiaLectura.ReadLine();
                     }

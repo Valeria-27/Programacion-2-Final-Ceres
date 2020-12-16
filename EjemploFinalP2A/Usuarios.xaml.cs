@@ -162,8 +162,12 @@ namespace ProyectoFinalP2A
                 string idModificar = txbNombre.Text;
                 if (idModificar != "")
                 {
+                    string nombre = txbNombre.Text.Trim();
+                    string tipo = txbTipo.Text.Trim();
+                    string usuario = txbUsuario.Text.Trim();
+                    string password = txbPassword.Text.Trim();
                     string linea;
-                    string[] datosProducto;
+                    string[] datosUsuario;
                     char separador = ',';
                     bool modificar = false;
                     StreamReader tuberiaLectura = File.OpenText(pathName);
@@ -171,16 +175,15 @@ namespace ProyectoFinalP2A
                     linea = tuberiaLectura.ReadLine();
                     while (linea != null)
                     {
-                        datosProducto = linea.Split(separador);
-                        if (idModificar != datosProducto[0])
+                        datosUsuario = linea.Split(separador);
+                        if (idModificar != datosUsuario[0])
                         {
                             tuberiaEscritura.WriteLine(linea);
                         }
                         else
                         {
                             modificar = true;
-                            string productoModificado = (txbNombre.Text + "," + txbTipo + "," + txbUsuario + "," + txbPassword);
-                            tuberiaEscritura.WriteLine(idModificar + "," + productoModificado);
+                            tuberiaEscritura.WriteLine(nombre + "," + tipo + "," + usuario + "," + password);
                         }
                         linea = tuberiaLectura.ReadLine();
                     }
@@ -195,26 +198,29 @@ namespace ProyectoFinalP2A
                     File.Delete(pathNameAuxiliar);
                     if (modificar)
                     {
-                        MessageBox.Show("El cliente se modifico con exito");
+                        MessageBox.Show("El usuario se modifico con exito");
                         MostrarUsuariosDG();
                         txbNombre.Text = "";
                         txbTipo.Text = "";
                         txbUsuario.Text = "";
                         txbPassword.Text = "";
+                        
                     }
                     else
                     {
-                        MessageBox.Show("El cliente no existe");
+                        MessageBox.Show("El usuario no existe");
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se pemite vacio");
-
                 }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+
+                MessageBox.Show("No se pemite vacio" + ex.Message);
 
             }
         }

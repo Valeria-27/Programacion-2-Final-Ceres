@@ -40,9 +40,9 @@
 
         </StackPanel>
 
-        <DataGrid FontSize="30"   Name="dgVentas" HorizontalAlignment="Left" Height="102" Margin="204,72,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="834" Grid.ColumnSpan="2"/>
+        <DataGrid FontSize="20"   Name="dgVentas" HorizontalAlignment="Left" Height="102" Margin="204,72,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="834" Grid.ColumnSpan="2"/>
         <Button  Background="#28B463" Grid.Row="3" BorderBrush="Transparent" Foreground="#F9E79F"  Click="BtnRealizarVenta_Click" x:Name="btnRealizarVenta" Content="Realizar Venta" FontSize="20" Margin="204,84,214,101" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <DataGrid  Name="dgMostrarVentas"  FontSize="30" HorizontalAlignment="Left" Height="102" Margin="204,64,0,0" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Top" Width="834" Grid.ColumnSpan="2"/>
+        <DataGrid  Name="dgMostrarVentas"  FontSize="20" HorizontalAlignment="Left" Height="102" Margin="204,64,0,0" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Top" Width="834" Grid.ColumnSpan="2"/>
 
 
     </Grid>
