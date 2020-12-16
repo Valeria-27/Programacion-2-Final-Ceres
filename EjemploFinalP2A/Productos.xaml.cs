@@ -161,6 +161,11 @@ namespace ProyectoFinalP2A
                 string idModificar = txbId.Text;
                 if (idModificar != "")
                 {
+                    string id = txbId.Text.Trim();
+                    string nombre = txbNombre.Text.Trim();
+                    string precioVenta = txbPrecioVenta.Text.Trim();
+                    string precioCompra = txbPrecioCompra.Text.Trim();
+                    string cantidad = txbCantidad.Text.Trim();
                     string linea;
                     string[] datosProducto;
                     char separador = ',';
@@ -178,13 +183,14 @@ namespace ProyectoFinalP2A
                         else
                         {
                             modificar = true;
-                            string productoModificado = (txbId.Text + "," + txbNombre + "," + txbPrecioVenta + "," + txbPrecioCompra + "," + txbCantidad);
-                            tuberiaEscritura.WriteLine(idModificar + "," + productoModificado);
+                            tuberiaEscritura.WriteLine(idModificar + "," + nombre + "," + precioVenta + "," + precioCompra + "," + cantidad);
                         }
                         linea = tuberiaLectura.ReadLine();
                     }
                     tuberiaEscritura.Close();
                     tuberiaLectura.Close();
+
+
 
                     //vamos a copiar todo el contenido del auxiliar en el original
                     File.Delete(pathName);
@@ -211,8 +217,10 @@ namespace ProyectoFinalP2A
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+
+                MessageBox.Show("No se pemite vacio" + ex.Message);
 
             }
         }
